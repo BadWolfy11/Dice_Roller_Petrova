@@ -51,13 +51,19 @@ fun DiceRollerApp() {
 fun DiceWithButtonAndImage(modifier: Modifier = Modifier .fillMaxSize()
     .wrapContentSize(Alignment.Center)) {
     var result by remember { mutableStateOf(1) }
-    val imageResource = when (result) {
-        1 -> R.drawable.dice_1
-        2 -> R.drawable.dice_2
-        3 -> R.drawable.dice_3
-        4 -> R.drawable.dice_4
-        5 -> R.drawable.dice_5
-        else -> R.drawable.dice_6
+    var imageResource = when (result) {
+        1 -> R.drawable.whitebishop
+        2 -> R.drawable.whitehorse
+        3 -> R.drawable.whiteking
+        4 -> R.drawable.whitepawn
+        5 -> R.drawable.whiterook
+        6 -> R.drawable.whitequeen
+        7 -> R.drawable.blackbishop
+        8 -> R.drawable.blackking
+        9 -> R.drawable.blackknight
+        10 -> R.drawable.blackpawn
+        11 -> R.drawable.blackqueen
+        else -> R.drawable.blackrook
     }
     Column(
         modifier = modifier,
@@ -65,8 +71,12 @@ fun DiceWithButtonAndImage(modifier: Modifier = Modifier .fillMaxSize()
     ) {
         Image(painter = painterResource(id = imageResource), contentDescription = result.toString())
         Spacer(modifier = Modifier.height(16.dp))
+        Button(onClick = { result = (7..12).random() }) {
+            Text(stringResource(R.string.chess_one))
+        }
+        Spacer(modifier = Modifier.height(16.dp))
         Button(onClick = { result = (1..6).random() }) {
-            Text(stringResource(R.string.roll))
+            Text(stringResource(R.string.chess_two))
         }
     }
 }
