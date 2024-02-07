@@ -5,9 +5,12 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material3.Button
@@ -66,18 +69,26 @@ fun DiceWithButtonAndImage(modifier: Modifier = Modifier .fillMaxSize()
         else -> R.drawable.blackrook
     }
     Column(
-        modifier = modifier,
-        horizontalAlignment = Alignment.CenterHorizontally
+        modifier = modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
     ) {
-        Image(painter = painterResource(id = imageResource), contentDescription = result.toString())
+        Image(painter = painterResource(id = imageResource),  modifier = Modifier.fillMaxSize(0.3f), contentDescription = result.toString())
         Spacer(modifier = Modifier.height(16.dp))
-        Button(onClick = { result = (7..12).random() }) {
-            Text(stringResource(R.string.chess_one))
+        Column(
+            modifier = Modifier)
+        {
+
+            Button(onClick = { result = (7..12).random() }) {
+                Text(stringResource(R.string.chess_one))
+            }
+            Spacer(modifier = Modifier.height(16.dp))
+            Button(onClick = { result = (1..6).random() }) {
+                Text(stringResource(R.string.chess_two))
+            }
         }
-        Spacer(modifier = Modifier.height(16.dp))
-        Button(onClick = { result = (1..6).random() }) {
-            Text(stringResource(R.string.chess_two))
-        }
+
+
     }
 }
 
